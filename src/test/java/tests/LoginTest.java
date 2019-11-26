@@ -28,10 +28,10 @@ public class LoginTest {
     @Test
     public void LoginTest1(){
         driver.get("http://secure.smartbearsoftware.com/samples/testcomplete12/webOrders/login.aspx");
-        driver.findElement(By.xpath("//input[@name='ctl00$MainContent$username']")).sendKeys("Tester");
-        driver.findElement(By.id("ctl00_MainContent_password")).sendKeys("test"+ Keys.ENTER);
-        String title= driver.getTitle();
-        Assert.assertEquals(title,"Web Orders");
+        driver.findElement(By.xpath("//input[@name='ctl00$MainContent$username']")).sendKeys("Tester2");
+        driver.findElement(By.id("ctl00_MainContent_password")).sendKeys("tes2t"+ Keys.ENTER);
+        String errorMsg=driver.findElement(By.id("ctl00_MainContent_status")).getText();
+        Assert.assertEquals(errorMsg,"Invalid Login or Password.");
     }
     @Test
     public void loginOut(){
@@ -39,8 +39,7 @@ public class LoginTest {
         driver.findElement(By.xpath("//input[@name='ctl00$MainContent$username']")).sendKeys("Tester");
         driver.findElement(By.id("ctl00_MainContent_password")).sendKeys("test"+ Keys.ENTER);
         driver.findElement(By.id("ct100_logout")).click();
-         String title= driver.getTitle();
-        Assert.assertEquals(title,"Web Orders Login");
+        Assert.assertEquals(driver.getTitle(),"Web Orders Login");
     }
     @AfterMethod
     public void Logout(){
